@@ -12,27 +12,28 @@ app = FastAPI(
     version="1.0.0"
 )
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",  # Local development
-        "http://localhost:3001",
-    ],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 # app.add_middleware(
 #     CORSMiddleware,
 #     allow_origins=[
-#         "http://localhost:3000",
-#         "https://health-fitness-tracker-main-fronten.vercel.app",  # Production
+#         "http://localhost:3000",  # Local development
+#         "http://localhost:3001",
 #     ],
-#     allow_origin_regex=r"https://health-fitness-tracker-main-.*\.vercel\.app",  # All previews
 #     allow_credentials=True,
 #     allow_methods=["*"],
 #     allow_headers=["*"],
 # )
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:3000",
+        "http://localhost:3001",
+        "https://health-fitness-tracker-frontend.vercel.app",  # Production
+    ],
+    allow_origin_regex=r"https://health-fitness-tracker-main-.*\.vercel\.app",  # All previews
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Startup and shutdown events
 @app.on_event("startup")
